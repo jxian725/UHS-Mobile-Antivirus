@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0457a5"
+    tools:context=".MainActivity2">
+
+    <ImageView
+        android:id="@+id/shield"
+        android:layout_width="322dp"
+        android:layout_height="596dp"
+        android:layout_marginStart="79dp"
+        android:layout_marginEnd="79dp"
+        android:layout_marginBottom="147dp"
+        android:contentDescription="@string/protectionShield"
+        android:src="@raw/shield"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/protectionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="167dp"
+        android:layout_marginTop="219dp"
+        android:layout_marginEnd="166dp"
+        android:layout_marginBottom="481dp"
+        android:text="@string/protection"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ToggleButton
+        android:id="@+id/protectionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="196dp"
+        android:layout_marginTop="292dp"
+        android:layout_marginEnd="196dp"
+        android:layout_marginBottom="403dp"
+        android:background="@drawable/btn_shield_toggle"
+        android:textColor="@drawable/btn_shield_toggle"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/scanButton"
+        android:layout_width="307dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="87dp"
+        android:layout_marginTop="450dp"
+        android:layout_marginEnd="86dp"
+        android:layout_marginBottom="226dp"
+        android:background="@drawable/rounded_corners"
+        android:drawableStart="@drawable/ic_shield_color"
+        android:drawablePadding="-30dp"
+        android:gravity="center"
+        android:paddingStart="20sp"
+        android:paddingEnd="0sp"
+        android:text="@string/scan_device"
+        android:textColor="@color/darkRed"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lastScanText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="517dp"
+        android:layout_marginEnd="240dp"
+        android:layout_marginBottom="196dp"
+        android:text="@string/last_scan"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lastScanValueText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="517dp"
+        android:layout_marginBottom="196dp"
+        android:text="No History"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@+id/lastScanText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

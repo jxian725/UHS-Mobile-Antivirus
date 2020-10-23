@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MobileAntivirus</string>
+    <string name="protectionshield">ProtectionShield</string>
+    <string name="protection">Protection</string>
+    <string name="protectionShield" />
+    <string name="scan_device">Scan Device</string>
+    <string name="last_scan">Last scan:</string>
+    <string name="anti_thief">Anti-Thief</string>
+    <string name="cloud_backup">Cloud Backup</string>
+    <string name="anti_phishing">Anti-Phishing</string>
+    <string name="web_protection">Web Protection</string>
+    <string name="parental_control">Parental Control</string>
+    <string name="title_activity_scan_device">ScanDevice</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+</resources>

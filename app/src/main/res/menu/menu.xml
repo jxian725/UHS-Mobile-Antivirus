@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--android:icon="@drawable/ic_uhs48dp"-->
+    <item
+        android:title="@string/anti_thief"
+        android:id="@+id/antiThief"
+        app:showAsAction="never"/>
+    <item
+        android:title="@string/cloud_backup"
+        android:id="@+id/cloudBackup"
+        app:showAsAction="never"/>
+    <item
+        android:title="@string/anti_phishing"
+        android:id="@+id/antiPhishing"
+        app:showAsAction="never"/>
+    <item
+        android:title="@string/web_protection"
+        android:id="@+id/webProtection"
+        app:showAsAction="never"/>
+    <item
+        android:title="@string/parental_control"
+        android:id="@+id/parentalControl"
+        app:showAsAction="never"/>
+
+
+</menu>
