@@ -2,10 +2,8 @@ package com.uhs.mobileantivirus;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -176,9 +173,9 @@ public class MainActivity2 extends AppCompatActivity {
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    startService();
+                    startService(new Intent(getApplicationContext(),service.class));
                 } else {
-                    stopService();
+                    stopService(new Intent(getApplicationContext(),service.class));
                 }
             }
         });
@@ -220,16 +217,6 @@ public class MainActivity2 extends AppCompatActivity {
            default:
                return super.onOptionsItemSelected(item);
         }
-    }
-
-    public void startService() {
-        Intent serviceIntent = new Intent(this, ExampleService.class);
-        ContextCompat.startForegroundService(this, serviceIntent);
-    }
-
-    public void stopService() {
-        Intent serviceIntent = new Intent(this, ExampleService.class);
-        stopService(serviceIntent);
     }
 
 }
