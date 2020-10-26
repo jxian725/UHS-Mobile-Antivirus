@@ -161,11 +161,10 @@ public class MainActivity2 extends AppCompatActivity {
                 AddData(strDateTimeAdd);
                 //goto Scan
 
-//                recreate();
-//                finish();
-//                overridePendingTransition(0,0);
-//                startActivity(getIntent());
-//                overridePendingTransition(0,0);
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -174,6 +173,7 @@ public class MainActivity2 extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     startService(new Intent(getApplicationContext(),service.class));
+
                 } else {
                     stopService(new Intent(getApplicationContext(),service.class));
                 }
