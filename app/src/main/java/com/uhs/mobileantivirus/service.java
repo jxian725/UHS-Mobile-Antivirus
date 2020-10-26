@@ -5,7 +5,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
-import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -17,8 +16,6 @@ public class service extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId){
         onTaskRemoved(intent);
-        //Toast.makeText(getApplicationContext(),"This is a Service running in Background",
-        //Toast.LENGTH_SHORT).show();
         createNotificationChannel();
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "UHS_AV")
                 .setSmallIcon(R.drawable.ic_uhs48dp)
