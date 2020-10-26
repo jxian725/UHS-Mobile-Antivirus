@@ -172,8 +172,8 @@ public class MainActivity2 extends AppCompatActivity {
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                   // Toast.makeText(getBaseContext(), "Protection ON", Toast.LENGTH_SHORT).show();
                     startService(new Intent(getApplicationContext(),service.class));
-
                 } else {
                     stopService(new Intent(getApplicationContext(),service.class));
                 }
