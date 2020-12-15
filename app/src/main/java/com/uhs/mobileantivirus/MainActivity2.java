@@ -1,17 +1,16 @@
 package com.uhs.mobileantivirus;
-
-
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.ActivityManager;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,8 +21,9 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class MainActivity2 extends AppCompatActivity {
-
     private static final String TAG = "MainActivity2";
+    Intent mServiceIntent;
+    private service mYourService;
 
     DatabaseHelper mDatabaseHelper;
     private Button scanButton;
@@ -35,7 +35,15 @@ public class MainActivity2 extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.drawable.ic_uhs48dp);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
+        ToggleButton toggle = (ToggleButton) findViewById(R.id.protectionButton);
         mDatabaseHelper = new DatabaseHelper(this);
+        mYourService = new service();
+        mServiceIntent = new Intent(this, mYourService.getClass());
+        if (!isMyServiceRunning(mYourService.getClass())) {
+           toggle.setChecked(false);
+        } else {
+            toggle.setChecked(true);
+        }
 
         //getHistoryTextView
         lastScanValueText = (TextView)findViewById(R.id.lastScanValueText);
@@ -165,17 +173,22 @@ public class MainActivity2 extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 startActivity(getIntent());
                 overridePendingTransition(0, 0);
+                startActivity(new Intent(MainActivity2.this, ScanDevice.class));
             }
         });
 
-        ToggleButton toggle = (ToggleButton) findViewById(R.id.protectionButton);
+        final Intent intent = new Intent(MainActivity2.this, service.class);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                   // Toast.makeText(getBaseContext(), "Protection ON", Toast.LENGTH_SHORT).show();
-                    startService(new Intent(getApplicationContext(),service.class));
+                    Toast.makeText(getBaseContext(), "Protection ON", Toast.LENGTH_SHORT).show();
+                    startService(intent);
                 } else {
-                    stopService(new Intent(getApplicationContext(),service.class));
+                    //stopService(mServiceIntent);
+                    Toast.makeText(getBaseContext(), "Protection OFF", Toast.LENGTH_SHORT).show();
+                    NotificationManager notificationManager = getSystemService(NotificationManager.class);
+                    notificationManager.cancel(100);
+                    stopService(intent);
                 }
             }
         });
@@ -184,9 +197,9 @@ public class MainActivity2 extends AppCompatActivity {
     public void AddData(String newEntry){
         boolean insertData = mDatabaseHelper.addData(newEntry);
         if (insertData) {
-            Toast.makeText(getBaseContext(), "Success Insert Data", Toast.LENGTH_SHORT ).show();
+            Toast.makeText(getBaseContext(), "Application List", Toast.LENGTH_SHORT ).show();
         } else {
-            Toast.makeText(getBaseContext(), "Fail Insert Data", Toast.LENGTH_SHORT ).show();
+            Toast.makeText(getBaseContext(), "Unexpected Error", Toast.LENGTH_SHORT ).show();
         }
     }
 
@@ -219,4 +232,29 @@ public class MainActivity2 extends AppCompatActivity {
         }
     }
 
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                Log.i ("Service status", "Running");
+                return true;
+            }
+        }
+        Log.i ("Service status", "Not running");
+        return false;
+    }
+
+    @Override
+    protected void onDestroy() {
+        ToggleButton toggle = (ToggleButton) findViewById(R.id.protectionButton);
+        if (toggle.isChecked() == true) {
+            Intent broadcastIntent = new Intent();
+            broadcastIntent.setAction("restartservice");
+            broadcastIntent.setClass(this, Restarter.class);
+            this.sendBroadcast(broadcastIntent);
+            super.onDestroy();
+        } else {
+            super.onDestroy();
+        }
+    }
 }

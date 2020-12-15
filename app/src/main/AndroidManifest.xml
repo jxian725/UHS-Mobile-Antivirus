@@ -3,7 +3,7 @@
     package="com.uhs.mobileantivirus">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-feature android:name="android.hardware.type.watch" />
 
     <application
@@ -14,14 +14,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver
+            android:name="Restarter"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="restartservice" />
+            </intent-filter>
+        </receiver>
         <service
             android:name=".service"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true">
+        </service>
         <activity android:name=".AntiPhishing"></activity>
         <activity
             android:name=".ScanDevice"
-            android:label="@string/title_activity_scan_device">
+            android:label="  All Applications"
+            android:theme="@style/AppTheme2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
