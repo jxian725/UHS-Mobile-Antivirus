@@ -10,6 +10,7 @@ import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.HeaderViewListAdapter;
 import android.widget.ListAdapter;
@@ -49,7 +50,13 @@ public class ScanDevice extends AppCompatActivity {
             }
         }
         adapter.notifyDataSetChanged();
-
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = (String) parent.getItemAtPosition(position);
+                Toast.makeText(getApplicationContext(), selectedItem, Toast.LENGTH_SHORT ).show();
+            }
+        });
     }
 
     protected ListView getListView() {
