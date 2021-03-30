@@ -1,3 +1,4 @@
 <resources>
     <string name="hello_world">Hello Round World!</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoianhpYW43MjUiLCJhIjoiY2ttcG1peWpxMmczZDJxcXU5NjNnNGNmciJ9.pEGa81THUcIO6CvN294MYA</string>
 </resources>

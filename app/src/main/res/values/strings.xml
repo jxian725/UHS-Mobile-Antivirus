@@ -11,9 +11,14 @@
     <string name="web_protection">Web Protection</string>
     <string name="parental_control">Parental Control</string>
     <string name="title_activity_scan_device">ScanDevice</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoianhpYW43MjUiLCJhIjoiY2ttcG1peWpxMmczZDJxcXU5NjNnNGNmciJ9.pEGa81THUcIO6CvN294MYA</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="title_activity_cloud_backup">CloudBackup</string>
+    <string name="check_connection" />
+    <string name="title_activity_anti_theft">AntiTheft</string>
+    <string name="title_activity_parental_mode">ParentalMode</string>
 </resources>
