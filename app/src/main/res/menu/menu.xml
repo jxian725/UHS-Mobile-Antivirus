@@ -3,7 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <!--android:icon="@drawable/ic_uhs48dp"-->
     <item
-        android:title="@string/anti_thief"
+        android:title="Scan Device"
+        android:id="@+id/scanDevice"
+        app:showAsAction="never"/>
+    <item
+        android:title="Anti Theft (Geolocation)"
         android:id="@+id/antiThief"
         app:showAsAction="never"/>
     <item
@@ -11,16 +15,16 @@
         android:id="@+id/cloudBackup"
         app:showAsAction="never"/>
     <item
-        android:title="@string/anti_phishing"
+        android:title="Web Protection"
         android:id="@+id/antiPhishing"
-        app:showAsAction="never"/>
-    <item
-        android:title="@string/web_protection"
-        android:id="@+id/webProtection"
         app:showAsAction="never"/>
     <item
         android:title="@string/parental_control"
         android:id="@+id/parentalControl"
+        app:showAsAction="never"/>
+    <item
+        android:title="User Profile"
+        android:id="@+id/userProfile"
         app:showAsAction="never"/>
 
 

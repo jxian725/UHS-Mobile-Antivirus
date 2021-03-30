@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "377128520972",
+    "project_id": "uhs-antivirus",
+    "storage_bucket": "uhs-antivirus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377128520972:android:57231ac5729e7c5bf90d29",
+        "android_client_info": {
+          "package_name": "com.uhs.mobileantivirus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "377128520972-sl4jjlebejv2vv7smaid0jrkg3vf9429.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkgVjKFA7uadU0wRvowbgLPORje09nI8w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "377128520972-sl4jjlebejv2vv7smaid0jrkg3vf9429.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

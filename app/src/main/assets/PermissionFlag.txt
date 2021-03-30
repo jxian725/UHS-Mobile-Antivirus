@@ -1,0 +1,12 @@
+android.permission.CHANGE_CONFIGURATION
+android.permission.WRITE_SMS
+android.permission.SEND_SMS_NO_CONFIRMATION
+android.permission.CALL_PHONE
+android.permission.CAMERA
+android.permission.READ_LOGS
+android.permission.RESTART_PACKAGES
+android.permission.KILL_BACKGROUND_PROCESSES
+android.permission.PROCESS_OUTGOING_CALLS
+android.permission.WRITE_SECURE_SETTINGS
+android.permission.AUTHENTICATE_ACCOUNTS
+android.permission.ADD_SYSTEM_SERVICE

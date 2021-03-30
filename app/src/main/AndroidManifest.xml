@@ -2,59 +2,160 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.uhs.mobileantivirus">
 
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-feature android:name="android.hardware.type.watch" />
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <permission
+        android:name="com.example.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.example.permission.MAPS_RECEIVE" />
 
     <application
         android:allowBackup="true"
+        android:clearTaskOnLaunch="true"
         android:icon="@drawable/ic_uhs"
-        android:label="@string/app_name"
+        android:label="Mobile Antivirus"
         android:logo="@drawable/ic_uhs"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:stateNotNeeded="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity android:name=".SignatureBased"
+            android:icon="@drawable/ic_uhs48dp"
+            android:label="  Mobile Security"
+            android:theme="@style/AppTheme2"/>
+
+        <activity android:name=".PermissionBased"
+            android:icon="@drawable/ic_uhs48dp"
+            android:label="  Mobile Security"
+            android:theme="@style/AppTheme2" />
+
+        <activity
+            android:name=".ParentalControl"
+            android:icon="@drawable/ic_uhs48dp"
+            android:label="  Mobile Security"
+            android:theme="@style/AppTheme2">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".FakeHome"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ParentalMode"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme3" />
+
+        <activity-alias
+            android:name=".LauncherAlias1"
+            android:targetActivity=".ParentalMode">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name=".LauncherAlias2"
+            android:enabled="false"
+            android:targetActivity=".ParentalMode">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity
+            android:name=".UserProfile"
+            android:icon="@drawable/ic_uhs48dp"
+            android:label="  Mobile Security"
+            android:theme="@style/AppTheme2" />
+
+        <activity
+            android:name=".AntiTheft"
+            android:icon="@drawable/ic_uhs48dp"
+            android:label="  Mobile Security"
+            android:theme="@style/AppTheme2">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".CloudBackup"
+            android:icon="@drawable/ic_uhs48dp"
+            android:label="  Mobile Security"
+            android:theme="@style/AppTheme2">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
         <receiver
-            android:name="Restarter"
+            android:name=".Restarter"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="restartservice" />
             </intent-filter>
         </receiver>
+
         <service
             android:name=".service"
             android:enabled="true"
-            android:exported="true">
-        </service>
-        <activity android:name=".AntiPhishing"></activity>
+            android:exported="true" />
+
         <activity
-            android:name=".ScanDevice"
-            android:label="  All Applications"
+            android:name=".AntiPhishing"
+            android:icon="@drawable/ic_uhs48dp"
+            android:label="  Mobile Security"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".ScanFiles"
+            android:label="  All Installed Packages"
             android:theme="@style/AppTheme2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <uses-library
-            android:name="com.google.android.wearable"
-            android:required="false" />
-        <!--
-               Set to true if your app is Standalone, that is, it does not require the handheld
-               app to run.
-        -->
-        <meta-data
-            android:name="com.google.android.wearable.standalone"
-            android:value="true" />
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/btn_shield_toggle" />
 
         <activity
-            android:name=".MainActivity2"
+            android:name=".ScanDevice"
             android:icon="@drawable/ic_uhs48dp"
             android:label="  Mobile Security"
             android:theme="@style/AppTheme2" />

@@ -9,7 +9,7 @@ import android.util.Log;
 
 import androidx.annotation.ContentView;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class DatabaseScan extends SQLiteOpenHelper {
 
     private static final String TAG = "DatabaseHelper";
 
@@ -17,7 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL1 = "ID";
     private static final String COL2 = "date";
 
-    public DatabaseHelper(Context context){
+    public DatabaseScan(Context context){
         super(context, TABLE_NAME, null, 1);
     }
     @Override
@@ -26,11 +26,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(createTable);
     }
 
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP IF TABLE EXISTS " + TABLE_NAME);
         onCreate(db);
     }
+
 
     public boolean addData(String item){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -47,10 +49,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+
     public Cursor getData(){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME + " ORDER BY " + COL1 + " DESC LIMIT 1";
         Cursor data = db.rawQuery(query,null);
         return data;
     }
+
 }
