@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Mobile Antivirus User Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="https://uhspremium.com/img/uhs.ico" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/icon-font.min.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-storage.js"></script>
+</head>
+
+<body style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;">
+    <section id="before">
+        <div class="limiter">
+            <div class="container-login100">
+                <div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
+                    <form class="login100-form validate-form" id="loginForm">
+                        <span class="login100-form-title p-b-55">
+						Login
+					</span>
+                        <div class="wrap-input100 validate-input m-b-16" data-validate="User ID is required">
+                            <input class="input100 upper" type="text" name="userid" id="userid" placeholder="USER ID">
+                            <span class="focus-input100"></span>
+                            <span class="symbol-input100">
+							<span class="lnr lnr-user"></span>
+                            </span>
+                        </div>
+                        <div class="wrap-input100 validate-input m-b-16" data-validate="Password is required">
+                            <input class="input100" type="password" name="pass" id="pass" placeholder="Password">
+                            <span class="focus-input100"></span>
+                            <span class="symbol-input100">
+							<span class="lnr lnr-lock"></span>
+                            </span>
+                        </div>
+                        <div class="contact100-form-checkbox m-l-4">
+                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                            <label class="label-checkbox100" for="ckb1">
+							Remember me
+						</label>
+                        </div>
+                        <div class="container-login100-form-btn p-t-25">
+                            <button class="login100-form-btn" id="logon">
+							Login
+						</button>
+                            <p id="waiting" class="blink" style="display: none;">Please Wait</p>
+                        </div>
+                        <div class="text-center w-full p-t-115">
+                            <span class="txt1">
+							New user?
+						</span>
+                            <a class="txt1 bo1 hov1" onclick="register()">
+							Register Now
+						</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="myModal" class="modal">
+            <div class="modal-content" id="modal-cnt">
+                <div class="modal-header">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h4>Sign Up Now</h4>
+                </div>
+                <div class="modal-body" style="background-color:#c9ade0;">
+                    <div class="inputs" style="text-align: center;">
+                        <img src="https://uhspremium.com/img/background/contact1.png">
+                    </div>
+                    <div class="inputs">
+                        <label class="inputs-label">Username: </label>
+                        <input type="text" minlength="4" id="reg-userid" class="modalInpt" placeholder="USERID">
+                    </div>
+                    <div class="inputs">
+                        <label class="inputs-label">Password: </label>
+                        <input type="password" minlength="6" id="reg-pw1" class="modalInpt" placeholder="Password">
+                    </div>
+                    <div class="inputs">
+                        <label class="inputs-label">Confirm Password: </label>
+                        <input type="password" minlength="6" id="reg-pw2" class="modalInpt" placeholder="Repeat Password">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <table style="width: auto; margin-right: 0px; margin-left: auto;">
+                        <tr style="color:white;">
+                            <th style="text-align: center; border: none;"><button class="modalBtn regBtn" onclick="addAccount()">Register</button></th>
+                            <th style="text-align: center; border: none;"><button class="modalBtn closeBtn" onclick="closeModal()">Close</button></th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="after" style="display: none;">
+        <div class="limiter">
+            <div class="container-login100">
+                <div class="wrap-login200 p-l-50 p-r-50 p-t-77 p-b-30" style="color: white;">
+                    <div>
+                        <h1>UHS MOBILE ANTIVIRUS</h1><br>
+                        <h5>User:
+                            <uhs id="login-userid"></uhs>
+                        </h5>
+                        <h5>Last Login:
+                            <uhs id="last-login"></uhs>
+                        </h5><br>
+                        <h5>Parental Password:
+                            <uhs id="pp"></uhs>
+                        </h5><br>
+                        <h4>Latest Device Information</h4>
+                        <h5>Status:
+                            <uhs id="ls"></uhs>
+                        </h5>
+                        <h5>Location:</h5>
+                        <div id='map' style='width: 400px; height: 300px;'></div>
+                        <uhs id="l1"></uhs><br>
+                        <uhs id="l2"></uhs>
+                    </div>
+                </div>
+                <button class="login100-form-btn" onclick="storage()">
+                    View Cloud Storage
+                </button>
+                <div class="container-login100-form-btn p-t-25">
+                    <button class="login100-form-btn" id="logout" onclick="logout()">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="storageModal" class="modal">
+            <div class="modal-content" id="modal-cnt">
+                <div class="modal-header">
+                    <span class="close" onclick="closeStorage()">&times;</span>
+                    <h4>Cloud Backup Storage</h4>
+                </div>
+                <div class="modal-body" style="background-color:#c9ade0;">
+                    <ul id="listStorage">
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <table style="width: auto; margin-right: 0px; margin-left: auto;">
+                        <tr style="color:white;">
+                            <th style="text-align: center; border: none;"><button class="modalBtn closeBtn" onclick="closeStorage()">Close</button></th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/database.js"></script>
+
+</html>
